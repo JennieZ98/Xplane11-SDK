@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.1022
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Hello-World-SDK-3", "Hello-World-SDK-3.vcxproj", "{42607563-383C-4D79-BBDF-63BE42B0211B}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Camera", "..\Camera.vcxproj", "{BB73BCEA-A51F-4DFA-9C6A-DACFF4545090}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Camera", "Camera.vcxproj", "{BB73BCEA-A51F-4DFA-9C6A-DACFF4545090}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
