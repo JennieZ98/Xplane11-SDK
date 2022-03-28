@@ -22,11 +22,11 @@
 static XPLMWindowID	g_window;
 
 // Callbacks we will register when we create our window
-void				draw_hello_world(XPLMWindowID in_window_id, void * in_refcon);
-int					dummy_mouse_handler(XPLMWindowID in_window_id, int x, int y, int is_down, void * in_refcon) { return 0; }
-XPLMCursorStatus	dummy_cursor_status_handler(XPLMWindowID in_window_id, int x, int y, void * in_refcon) { return xplm_CursorDefault; }
-int					dummy_wheel_handler(XPLMWindowID in_window_id, int x, int y, int wheel, int clicks, void * in_refcon) { return 0; }
-void				dummy_key_handler(XPLMWindowID in_window_id, char key, XPLMKeyFlags flags, char virtual_key, void * in_refcon, int losing_focus) { }
+void				draw_hello_world(XPLMWindowID in_window_id, void * in_refcon);	// XPLMDrawWindow_f
+int					dummy_mouse_handler(XPLMWindowID in_window_id, int x, int y, int is_down, void * in_refcon) { return 0; }	//XPLMHandleMouseClick_f(?)
+XPLMCursorStatus	dummy_cursor_status_handler(XPLMWindowID in_window_id, int x, int y, void * in_refcon) { return xplm_CursorDefault; }	//XPLMHandleCursor_f
+int					dummy_wheel_handler(XPLMWindowID in_window_id, int x, int y, int wheel, int clicks, void * in_refcon) { return 0; }	//XPLMHandleMouseWheel_f
+void				dummy_key_handler(XPLMWindowID in_window_id, char key, XPLMKeyFlags flags, char virtual_key, void * in_refcon, int losing_focus) { }	//XPLMHandleKey_f
 
 PLUGIN_API int XPluginStart(
 							char *		outName,
@@ -37,7 +37,7 @@ PLUGIN_API int XPluginStart(
 	strcpy(outSig, "xpsdk.examples.helloworld3plugin");
 	strcpy(outDesc, "A Hello World plug-in for the XPLM300 SDK.");
 	
-	XPLMCreateWindow_t params;
+	XPLMCreateWindow_t params;	//窗口参数
 	params.structSize = sizeof(params);
 	params.visible = 1;
 	params.drawWindowFunc = draw_hello_world;
@@ -53,7 +53,6 @@ PLUGIN_API int XPluginStart(
 	// Opt-in to styling our window like an X-Plane 11 native window
 	// If you're on XPLM300, not XPLM301, swap this enum for the literal value 1.
 	params.decorateAsFloatingWindow = xplm_WindowDecorationRoundRectangle;
-	
 	// Set the window's initial bounds
 	// Note that we're not guaranteed that the main monitor's lower left is at (0, 0)...
 	// We'll need to query for the global desktop bounds!
@@ -64,7 +63,7 @@ PLUGIN_API int XPluginStart(
 	params.right = params.left + 200;
 	params.top = params.bottom + 200;
 	
-	g_window = XPLMCreateWindowEx(&params);
+	g_window = XPLMCreateWindowEx(&params); //创建窗口
 	
 	// Position the window as a "free" floating window, which the user can drag around
 	XPLMSetWindowPositioningMode(g_window, xplm_WindowPositionFree, -1);
