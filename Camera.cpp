@@ -22,17 +22,15 @@
 #include <math.h>
 
 static XPLMHotKeyID	gHotKey = NULL;
-static XPLMDataRef		gPlaneX = NULL;
-static XPLMDataRef		gPlaneY = NULL;
-static XPLMDataRef		gPlaneZ = NULL;
+static XPLMDataRef gPlaneX = NULL;
+static XPLMDataRef gPlaneY = NULL;
+static XPLMDataRef gPlaneZ = NULL;
 
 
-static void	MyHotKeyCallback(void *               inRefcon);    
-static int 	MyOrbitPlaneFunc(
-                                   XPLMCameraPosition_t * outCameraPosition,  
-                                   int                  inIsLosingControl,    
-                                   void *               inRefcon);    
-
+static void	MyHotKeyCallback(void * inRefcon);    
+static int 	MyOrbitPlaneFunc(XPLMCameraPosition_t * outCameraPosition,  
+                             int inIsLosingControl,    
+                             void * inRefcon);    
 
 PLUGIN_API int XPluginStart(
 						char *		outName,
@@ -49,7 +47,7 @@ PLUGIN_API int XPluginStart(
 	gPlaneZ = XPLMFindDataRef("sim/flightmodel/position/local_z");
 
 	/* Register our hot key for the new view. */
-	gHotKey = XPLMRegisterHotKey(XPLM_VK_F8, xplm_DownFlag, 
+	gHotKey = XPLMRegisterHotKey(XPLM_VK_F8, xplm_DownFlag, //F8°´¼ü£¿
 				"Circling External View",
 				MyHotKeyCallback,
 				NULL);
@@ -96,10 +94,9 @@ void	MyHotKeyCallback(void *               inRefcon)
  * called each time X-Plane needs to draw a frame.
  * 
  */
-int 	MyOrbitPlaneFunc(
-                                   XPLMCameraPosition_t * outCameraPosition,   
-                                   int                  inIsLosingControl,    
-                                   void *               inRefcon)
+int 	MyOrbitPlaneFunc(XPLMCameraPosition_t * outCameraPosition,   
+                         int inIsLosingControl,    
+                         void * inRefcon)
 {
 	if (outCameraPosition && !inIsLosingControl)
 	{
